@@ -1,6 +1,12 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import './index.css'
+import React from 'react';
+import ReactDOM from 'react-dom';
+import 'bootstrap';
+import './css/index.css';
+import './css/bootstrap.css';
+import 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css';
+import 'https://fonts.googleapis.com/css?family=Raleway:400,800';
+import './js/jquery.min.js'
+import './js/bootstrap.min.js'
 
 function Square(props) {
   return (
@@ -82,20 +88,20 @@ class Game extends React.Component {
     const winner = calculateWinner(current.squares);
     const moves = history.map((step, move) => {
       const desc = move ?
-        'Go to move #' + move :
+        `Go to move # ${move}` :
         'Go to game start';
       return (
         <li key={move}>
-          <button onClick={() => this.jumpTo(move)}>{desc}</button>
+          <button className={"btn btn-primary"} onClick={() => this.jumpTo(move)}>{desc}</button>
         </li>
       );
     });
 
     let status;
     if (winner) {
-      status = 'Winner: ' + winner;
+      status = `Winner: ${winner}`;
     } else {
-      status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
+      status = `Next player: ${(this.state.xIsNext ? 'X' : 'O')}`;
     }
 
     return (
@@ -108,9 +114,8 @@ class Game extends React.Component {
 
         </div>
         <div className="game-info">
-          <div>{status}</div>
-        <div>{moves}</div>
-          <ol>{/* TODO */}</ol>
+          <div className="status">{status}</div>
+          <div>{moves}</div>
         </div>
       </div>
     );
