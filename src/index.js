@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import 'bootstrap';
+// import 'bootstrap';
 import './css/index.css';
 import './css/bootstrap.css';
-import 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css';
-import 'https://fonts.googleapis.com/css?family=Raleway:400,800';
-import './js/jquery.min.js'
-import './js/bootstrap.min.js'
+// import 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css';
+// import 'https://fonts.googleapis.com/css?family=Raleway:400,800';
+// import './js/jquery.min.js'
+// import './js/bootstrap.min.js'
 
 function Square(props) {
   return (
@@ -88,12 +88,10 @@ class Game extends React.Component {
     const winner = calculateWinner(current.squares);
     const moves = history.map((step, move) => {
       const desc = move ?
-        `Go to move # ${move}` :
-        'Go to game start';
+        `${move}` :
+        '0';
       return (
-        <li key={move}>
-          <button className={"btn btn-primary"} onClick={() => this.jumpTo(move)}>{desc}</button>
-        </li>
+        <button key={move} className={"btn btn-primary btn-block"} onClick={() => this.jumpTo(move)}>{desc}</button>
       );
     });
 
@@ -105,17 +103,25 @@ class Game extends React.Component {
     }
 
     return (
-      <div className="game">
-        <div className="game-board">
+      <div className="game container">
+        <div className="game-board container">
           <Board
             squares={current.squares}
             handleClick={(i) => this.handleClick(i)}
           />
 
         </div>
-        <div className="game-info">
-          <div className="status">{status}</div>
-          <div>{moves}</div>
+        <div className="container">
+          <div className="row">
+            <div className="cols-sm">
+              <div className="btn-group" role="group">
+                <div>{moves}</div>
+              </div>
+            </div>
+            <div className="cols-sm">
+              <div className="alert alert-success">{status}</div>
+            </div>
+          </div>
         </div>
       </div>
     );
