@@ -10,7 +10,7 @@ import './css/bootstrap.css';
 
 function Square(props) {
   return (
-    <button className="square" onClick={props.onClick}>
+    <button className="square col-sm" onClick={props.onClick}>
       {props.value}
     </button>
   );
@@ -25,7 +25,7 @@ class Board extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="container">
         <div className="board-row">
           {this.renderSquare(0)}
           {this.renderSquare(1)}
@@ -88,8 +88,8 @@ class Game extends React.Component {
     const winner = calculateWinner(current.squares);
     const moves = history.map((step, move) => {
       const desc = move ?
-        `${move}` :
-        '0';
+        `#${move}` :
+        'Start';
       return (
         <button key={move} className={"btn btn-primary btn-block"} onClick={() => this.jumpTo(move)}>{desc}</button>
       );
@@ -103,23 +103,27 @@ class Game extends React.Component {
     }
 
     return (
-      <div className="game container">
-        <div className="game-board container">
-          <Board
-            squares={current.squares}
-            handleClick={(i) => this.handleClick(i)}
-          />
+      <div className="container">
+        <div className="game row">
+          <div className="game-board col">
+            <Board
+              squares={current.squares}
+              handleClick={(i) => this.handleClick(i)}
+            />
 
-        </div>
-        <div className="container">
-          <div className="row">
-            <div className="cols-sm">
-              <div className="btn-group" role="group">
-                <div>{moves}</div>
+          </div>
+          <div className="col">
+            <div className="container">
+              <div className="row">
+                <div className="col-4">
+                  <div className="btn-group" role="group">
+                    <div>{moves}</div>
+                  </div>
+                </div>
+                <div className="col">
+                  <div className="alert alert-success">{status}</div>
+                </div>
               </div>
-            </div>
-            <div className="cols-sm">
-              <div className="alert alert-success">{status}</div>
             </div>
           </div>
         </div>
