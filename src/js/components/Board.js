@@ -1,22 +1,26 @@
 import React from 'react';
 import { Square } from '.'
 
-export const Board = () => (
-  <div className="container">
-    <div className="board-row">
-      <Square id={0}/>
-      <Square id={1}/>
-      <Square id={2}/>
+export const Board = () => {
+  let count = 0;
+  let rows = [];
+  for(let i=0;i<3;i++){
+    let row = []
+    for(let j=0;j<3;j++){
+      row.push(<Square key={count} id={count}/>);
+      count++;
+    };
+    rows.push(<Row key={i} squares={row}/>);
+  };
+  return (
+    <div className="container">
+      {rows}
     </div>
-    <div className="board-row">
-      <Square id={3}/>
-      <Square id={4}/>
-      <Square id={5}/>
-    </div>
-    <div className="board-row">
-      <Square id={6}/>
-      <Square id={7}/>
-      <Square id={8}/>
-    </div>
+  );
+}
+
+const Row = ({id, squares}) => (
+  <div className="board-row">
+    {squares}
   </div>
 );
