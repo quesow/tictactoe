@@ -16,10 +16,11 @@ const mapDispatchToProps = dispatch => {
 
 class ConnectedSquare extends React.Component {
   render() {
+    const square = this.props.squares[this.props.id]
+    const current = square && square.current ? true : false
     return (
-      <button className="square col-sm" onClick={() => this.props.handleClick(this.props.id)}>
-        {this.props.squares[this.props.id]}
-        {/* {this.props.squares[this.props.id].value} */}
+      <button className={`square col-sm${current ? " square-current" : ""}`} onClick={() => this.props.handleClick(this.props.id)}>
+        {square ? square.value : null}
       </button>
     );
   }
