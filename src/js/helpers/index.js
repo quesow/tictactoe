@@ -14,6 +14,9 @@ export function calculateWinner(squares) {
     if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
       return squares[a];
     }
+    // if (squares[a].value && squares[a].value === squares[b].value && squares[a].value === squares[c].value) {
+    //   return squares[a].value;
+    // }
   }
   return null;
 }

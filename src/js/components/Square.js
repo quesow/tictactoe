@@ -19,6 +19,7 @@ class ConnectedSquare extends React.Component {
     return (
       <button className="square col-sm" onClick={() => this.props.handleClick(this.props.id)}>
         {this.props.squares[this.props.id]}
+        {/* {this.props.squares[this.props.id].value} */}
       </button>
     );
   }

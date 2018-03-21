@@ -1,7 +1,9 @@
 import { HANDLE_CLICK, JUMPT_TO } from "../constants/action-types";
 import { calculateWinner } from "../helpers"
+
 const initialState = {
   history: [{
+    // squares: Array(9).fill({value:null}),
     squares: Array(9).fill(null),
   }],
   stepNumber: 0,
@@ -14,9 +16,11 @@ const rootReducer = (state = initialState, action) => {
       const history = state.history.slice(0, state.stepNumber + 1);
       const current = history[history.length - 1];
       const squares = current.squares.slice();
+    //   if (calculateWinner(squares) || squares[action.payload].value) {
       if (calculateWinner(squares) || squares[action.payload]) {
         return state;
       }
+    //   squares[action.payload].value = state.xIsNext ? 'X' : 'O';
       squares[action.payload] = state.xIsNext ? 'X' : 'O';
       return {
         ...state,
@@ -26,6 +30,7 @@ const rootReducer = (state = initialState, action) => {
         stepNumber: history.length,
         xIsNext: !state.xIsNext,
       };
+
     case JUMPT_TO:
       return {
         ...state,
