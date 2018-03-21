@@ -11,9 +11,18 @@ export function calculateWinner(squares) {
   ];
   for (let i = 0; i < lines.length; i++) {
     const [a, b, c] = lines[i];
-    if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-      return squares[a];
+    if (squares[a] && squares[b] && squares[c] && squares[a].value === squares[b].value && squares[a].value === squares[c].value) {
+      return squares[a].value;
     }
   }
   return null;
+}
+
+export function notCurrentAnyMore(squares) {
+  for (let i = 0; i < squares.length; i++) {
+    if(squares[i]){
+      squares[i].current = false
+    }
+  }
+  return squares
 }
