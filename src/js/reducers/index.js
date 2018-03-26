@@ -1,4 +1,4 @@
-import { HANDLE_CLICK, JUMPT_TO } from "../constants/action-types";
+import { HANDLE_CLICK, JUMPT_TO, INVERSE } from "../constants/action-types";
 import { calculateWinner, notCurrentAnyMore } from "../helpers"
 
 const initialState = {
@@ -7,6 +7,7 @@ const initialState = {
   }],
   stepNumber: 0,
   xIsNext: true,
+  invert: false,
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -35,6 +36,12 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         stepNumber: action.payload,
         xIsNext: (action.payload % 2) === 0,
+      };
+
+    case INVERSE:
+      return {
+        ...state,
+        invert: !state.invert,
       };
     default:
       return state;

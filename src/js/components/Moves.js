@@ -1,9 +1,10 @@
 import React from 'react';
 import { jumpTo } from "../actions";
 import { connect } from "react-redux";
+import { ToggleButton } from "."
 
 const mapStateToProps = state => {
-  return { history: state.history };
+  return { historyLength: state.history.length, invert: state.invert };
 };
 
 const mapDispatchToProps = dispatch => {
@@ -14,8 +15,9 @@ const mapDispatchToProps = dispatch => {
 
 class ConnectedMoves extends React.Component {
   render() {
-    const history = this.props.history;
-    const moves = history.map((step, move) => {
+    const indexes = Array.apply(null, {length: this.props.historyLength}).map(Number.call, Number)
+    const invertedHistory = this.props.invert ? indexes.reverse() : indexes;
+    const moves = invertedHistory.map((move) => {
       const desc = move ?
       `#${move}` :
       'Start';
@@ -25,7 +27,10 @@ class ConnectedMoves extends React.Component {
     });
     return (
       <div className="btn-group col" role="group">
-        <div>{moves}</div>
+        <div>
+          <ToggleButton/>
+          {moves}
+        </div>
       </div>
     );
   }
