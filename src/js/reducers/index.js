@@ -7,7 +7,7 @@ const initialState = {
   }],
   stepNumber: 0,
   xIsNext: true,
-  invert: false,
+  reorder: false,
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -41,7 +41,7 @@ const rootReducer = (state = initialState, action) => {
     case INVERSE:
       return {
         ...state,
-        invert: !state.invert,
+        reorder: !state.reorder,
       };
     default:
       return state;

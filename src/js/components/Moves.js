@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { ToggleButton } from "."
 
 const mapStateToProps = state => {
-  return { historyLength: state.history.length, invert: state.invert };
+  return { historyLength: state.history.length, reorder: state.reorder };
 };
 
 const mapDispatchToProps = dispatch => {
@@ -16,8 +16,8 @@ const mapDispatchToProps = dispatch => {
 class ConnectedMoves extends React.Component {
   render() {
     const indexes = Array.apply(null, {length: this.props.historyLength}).map(Number.call, Number)
-    const invertedHistory = this.props.invert ? indexes.reverse() : indexes;
-    const moves = invertedHistory.map((move) => {
+    const reorderedHistory = this.props.reorder ? indexes.reverse() : indexes;
+    const moves = reorderedHistory.map((move) => {
       const desc = move ?
       `#${move}` :
       'Start';

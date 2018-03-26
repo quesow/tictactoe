@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { inverse } from "../actions";
 
 const mapStateToProps = state => {
-  return { invert: state.invert };
+  return { reorder: state.reorder };
 };
 
 const mapDispatchToProps = dispatch => {
@@ -14,7 +14,7 @@ const mapDispatchToProps = dispatch => {
 
 class ConnectedToggleButton extends React.Component {
   render() {
-    const buttonName = this.props.invert ? "ASC" : "DESC"
+    const buttonName = this.props.reorder ? "ASC" : "DESC"
     return (
       <button className={"btn btn-default btn-block"} onClick={() => this.props.inverse()}>{buttonName}</button>
     );
